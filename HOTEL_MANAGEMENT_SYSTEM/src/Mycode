@@ -1,0 +1,162 @@
+
+//while loop for blinking
+/*     while (true){
+            text.setVisible(false);
+            try{
+                Thread.sleep(500);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            text.setVisible(true);
+            try{
+                Thread.sleep(500);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    */
+-----------------------------------------------------------------------------------------------------
+    //image setsize
+     ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("icon/3.png"));
+            Image i2=i1.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT);
+            ImageIcon i3=new ImageIcon(i2);
+            JLabel back=new JLabel(i3);
+            back.setBounds(5,20,25,25);
+            p1.add(back);
+
+     //set password image
+      //Set image for password
+              i4=new ImageIcon(ClassLoader.getSystemResource("Images/Password.png"));
+             Image i5=i4.getImage().getScaledInstance(200,200,Image.SCALE_DEFAULT);
+              i6=new ImageIcon(i5);
+             image1 =new JLabel(i6);
+             image1.setBounds(350,10,200,200);
+             image1.setIcon(i6);
+             this.addMouseListener(this);
+             this.add(image1);
+
+           //label
+            JLabel l=new JLabel("Welcome");
+                    l.setBounds(400,60,1000,50);
+                    l.setFont(new Font("Tahoma",Font.BOLD,46));
+                    DashImage.add(l);
+       -----------------------------------------------------------------------------------------------------------
+        //Menubar
+
+         JMenuBar mb=new JMenuBar();
+                mb.setBounds(0,0,1366,30);
+                DashImage.add(mb);
+
+                JMenu hotel=new JMenu("Hotel Manegement");
+                hotel.setForeground(Color.RED);
+                mb.add(hotel);
+
+                JMenuItem reception=new JMenuItem("Reception");
+                hotel.add(reception);
+
+                JMenu admin=new JMenu("Admin");
+                admin.setForeground(Color.blue);
+                mb.add(admin);
+
+                JMenuItem addemployee=new JMenuItem("AddEmploye");
+                admin.add(addemployee);
+
+                JMenuItem addrome=new JMenuItem("AddRoom");
+                admin.add(addrome);
+
+                JMenuItem addDriver=new JMenuItem("AddDriver");
+                admin.add(addDriver);
+
+//Dashb
+  //Dashboard Image
+        ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("Images/Dash.jpg"));
+        Image i2=i1.getImage().getScaledInstance(1366,730, Image.SCALE_DEFAULT);
+        ImageIcon i3=new ImageIcon(i2);
+        JLabel DashImage=new JLabel(i3);
+        DashImage.setBounds(0,0,1366,730);
+        this.add(DashImage);
+
+//Slide show
+package hotel_management_system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Dash extends JFrame {
+
+    JLabel l;
+    Timer tm;
+    int x=0;
+
+    String []list={"Images/eight.jpg"};
+
+    Dash(){
+
+        super("java");
+        l=new JLabel();
+        l.setBounds(0,0,1300,700);
+
+        SetImageSize(0);
+        tm=new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               SetImageSize(x);
+                x+=1;
+                if(x>=list.length)
+                    x=0;
+            }
+        });
+
+        this.add(l);
+        tm.start();
+        this.setSize(1300,700);
+        this.setLayout(null);
+        getContentPane().setBackground(Color.WHITE);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+    public void SetImageSize(int i){
+//        ImageIcon i1=new ImageIcon(list[i]);
+//        Image img=i1.getImage();
+//     //   Image img1=img.getScaledInstance(l.getWidth(),l.getHeight(),Image.SCALE_SMOOTH);
+//        ImageIcon i2=new ImageIcon(img1);
+//        l.setIcon(i2);
+        ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource(list[i]));
+    //    Image i2=i1.getImage().getScaledInstance(200,200,Image.SCALE_DEFAULT);
+    //    ImageIcon i3=new ImageIcon(i2);
+        JLabel image =new JLabel(i1);
+     //   image.setBounds(350,40,200,200);
+        this.add(image);
+    }
+
+    public static void main(String[] args) {
+        new Dash();
+    }
+}
+
+//
+employee_id varchar(30)
+education varchar(30)
+date_of_birth varchar(30)
+father_name varchar(30)
+
+//
+String dep=(String) cbj.getSelectedItem();
+            String buget=btf.getText();
+
+            try{
+                MyConnection conn=new MyConnection();
+                String query="insert into department values ('"+dep+"','"+buget+"')";
+
+                conn.stmt.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null,"added Succesfully");
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
